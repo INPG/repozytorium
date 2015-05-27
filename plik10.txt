@@ -11,7 +11,7 @@
 
 typedef struct osoba{
 
-     int element;
+     int element2;
 
      char imie[IMIE];
 
