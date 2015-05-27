@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <math.h>
+
+struct complex
+{
+    float real_part;
+    float imaginary_part;
+};
+
+struct complex dodawanie(struct complex liczba1,struct complex liczba2)
+{
+    struct complex wynik;
+    wynik.real_part = liczba1.real_part + liczba2.real_part;
+    wynik.imaginary_part = liczba1.imaginary_part + liczba2.imaginary_part;
+    return wynik;
+}
+
+float oblicz_modul(struct complex liczba)
+{
+    return sqrt(liczba.real_part*liczba.real_part + liczba.imaginary_part*liczba.imaginary_part);
+}
+
+struct complex sprzezenie(struct complex liczba)
+{
+    struct complex wynik;
+    wynik.real_part = liczba.real_part;
+    wynik.imaginary_part = (-1)*liczba.imaginary_part;
+    return wynik;
+}
+
+void wypisz_zesp(struct complex liczba)
+{
+    printf("%f %+fi",liczba.real_part,liczba.imaginary_part);
+}
+
+int main()
+{
+
+struct complex liczba1={2,3};
+struct complex liczba2={5,1};
+struct complex suma,sprzezenie1, sprzezenie2;
+float modul1,modul2;
+
+suma = dodawanie(liczba1,liczba2);
+sprzezenie1 = sprzezenie(liczba1);
+sprzezenie2 = sprzezenie(liczba2);
+modul1 = oblicz_modul(liczba1);
+modul2 = oblicz_modul(liczba2);
+
+printf("liczba1 = "); wypisz_zesp(liczba1);
+printf("\n");
+printf("liczba2 = "); wypisz_zesp(liczba2);
+printf("\n");
+printf("liczba1 + liczba2 = "); wypisz_zesp(suma);
+printf("\n");
+printf("sprzezenie liczby 1 = "); wypisz_zesp(sprzezenie1);
+printf("\n");
+printf("sprzezenie liczby 2 = "); wypisz_zesp(sprzezenie2);
+printf("\n");
+printf("modul liczby 1 = %f \n", modul1);
+printf("modul liczby 2 = %f \n", modul2);
+}
