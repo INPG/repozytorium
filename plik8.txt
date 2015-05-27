@@ -10,7 +10,7 @@
 
 typedef struct osoba{
 
-     char imie[IMIE];
+     char imie[im];
 
      char nazwisko[NAZWISKO];
 
@@ -259,7 +259,7 @@ do
 
             {       
 
-                    printf("Nie dzia≥a");
+                    printf("Nie dzia≈Ça");
 
                     return 1;
 
@@ -279,7 +279,7 @@ do
 
            {       
 
-                    printf("Nie dzia≥a");
+                    printf("Nie dzia≈Ça");
 
                     return 1;
 
