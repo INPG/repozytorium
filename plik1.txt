@@ -8,7 +8,7 @@ class OsobaCL
 {
 protected:
     string m_imie;
-    string m_nazwisko;
+    string m_nazwisko2;
     OsobaCL * m_nastepnaOsoba;
 public:
     void Inicjuj();
