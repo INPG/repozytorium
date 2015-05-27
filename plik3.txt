@@ -3,7 +3,7 @@
 void wypisz( int & iLiczba )
 {
     std::cout << "Wartosc liczby wynosi: " << iLiczba << std::endl;
-    iLiczba += 10;
+    iLiczba += 20;
     std::cout << "Wartosc liczby wynosi: " << iLiczba << std::endl;
 }
 
