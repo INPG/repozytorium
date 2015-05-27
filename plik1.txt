@@ -7,8 +7,13 @@ using namespace std;
 class OsobaCL
 {
 protected:
-    string m_imie;
-    string m_nazwisko2;
+<<<<<<< HEAD
+    string m_imie1;
+    string m_nazwisko;
+=======
+    string m_imie1;
+    string m_nazwisko;
+>>>>>>> 82a28b90aed58dab40afbd9f3ec909c73d0f7029
     OsobaCL * m_nastepnaOsoba;
 public:
     void Inicjuj();
