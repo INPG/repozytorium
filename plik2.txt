@@ -1,0 +1,75 @@
+#include <iostream>
+
+/// Int - typ intopodobny ;)
+class Int
+{
+    int i;
+   
+public:
+    Int()
+        : i( 0 )
+    { }
+   
+    Int( int x )
+        : i( x )
+    { }
+   
+    Int( const Int & x )
+        : i( x.i )
+    { }
+   
+    // Operatory
+    Int & operator =( const Int & x )
+    {
+        i = x.i;
+        return * this;
+    }
+   
+    Int operator +( const Int & x ) const
+    {
+        return i + x.i;
+    }
+   
+    Int operator -( const Int & x ) const
+    {
+        return i - x.i;
+    }
+   
+    Int operator *( const Int & x ) const
+    {
+        return i * x.i;
+    }
+   
+    Int operator /( const Int & x ) const
+    {
+        return i / x.i;
+    }
+   
+    Int operator %( const Int & x ) const
+    {
+        return i % x.i;
+    }
+   
+    // Operator wypisania obiektu Int do strumienia std::ostream (std::cout, std::cerr, itp)
+    friend std::ostream & operator <<( std::ostream & os, const Int & i )
+    {
+        os << i.i;
+        return os;
+    }
+   
+    // Operator wczytania ze strumienia std::istream (std::cin, itp)
+    friend std::istream & operator >>( std::istream & os, Int & i )
+    {
+        os >> i.i;
+        return os;
+    }
+};
+
+int main()
+{
+    const Int a = 64;
+    Int b = 42, c;
+   
+    std::cin >> c;
+    std::cout <<( a + b * c - 1 ) % a;
+}

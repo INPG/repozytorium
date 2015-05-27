@@ -1,0 +1,31 @@
+#include <iostream>
+
+class A
+{
+public:
+    virtual void a()
+    {
+        std::cout << "a" << std::endl;
+    }
+};
+
+class B
+{
+public:
+    virtual void b()
+    {
+        std::cout << "b" << std::endl;
+    }
+};
+
+class AB
+    : public A
+    , public B
+{ };
+
+int main()
+{
+    AB ab;
+    ab.a();
+    ab.b();
+}

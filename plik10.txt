@@ -1,0 +1,310 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+# define IMIE 10
+
+# define NAZWISKO 15
+
+
+
+typedef struct osoba{
+
+     int element;
+
+     char imie[IMIE];
+
+     char nazwisko[NAZWISKO];
+
+     long numer;
+
+     }adres;
+
+     
+
+void dodaj (adres** tablica, int n)
+
+{
+
+     
+
+     adres *nowa;
+
+     nowa = malloc((n+1)*(sizeof(adres)));
+
+     int i;
+
+     for(i=0;i<n;i++)
+
+           nowa[i]=(*tablica)[i];
+
+     nowa[n].element=n;
+
+     printf("Podaj imie: ");
+
+     fgets ((nowa[n].imie), IMIE, stdin);
+
+     fgets ((nowa[n].imie), IMIE, stdin);
+
+     printf("Podaj nazwisko: ");
+
+     fgets ((nowa[n].nazwisko), NAZWISKO, stdin);
+
+     printf("Dodaj numer telefonu: ");   
+
+     scanf("%ld",&(nowa[n].numer));
+
+     *(tablica)=nowa;            
+
+} 
+
+
+int wyszukaj(adres *tablica, int n)        
+
+{
+
+     printf("Jakiego numeru chcesz poszukac?\n");
+
+     long search;
+
+     int i;
+
+     scanf("%ld",&search);
+
+     for(i=0;i<n;i++)
+
+     {
+
+         if(tablica[i].numer == search)
+
+             return i;   
+
+     }
+
+       return -1;
+
+}
+
+
+void wypisz(adres tablica)
+
+{
+
+     printf("%s", tablica.imie);
+
+     printf("%s", tablica.nazwisko);
+
+     printf("%ld\n",tablica.numer);
+
+
+}
+
+
+void wszystko(adres *tablica, int n)
+
+{
+
+     int i;
+
+     for(i=0;i<n;i++)
+
+     {
+
+         printf("%i.", (tablica[i].element)+1);
+
+         printf(" %s", tablica[i].imie);
+
+         printf("   %s", tablica[i].nazwisko);
+
+         printf("   %ld\n\n",tablica[i].numer);
+
+     }
+
+     system("pause");
+
+     system("cls");      
+
+}
+
+
+void usun (adres** tab, adres* wart, int *n)
+
+{
+
+     printf("Ktory element tablicy chcesz usunac?");
+
+     int usu;
+
+     scanf("%i", &usu);
+
+     if(usu > *n || usu < 0)
+
+        {printf("Wybrany element nie istnieje\n");
+
+        return;
+
+        }
+
+     adres* nowa;
+
+     nowa=malloc(sizeof(adres)*(*n-1));
+
+     int i,j;
+
+     for(i=0,j=0;i<*n;i++)
+
+         if(i!=(usu-1))
+
+         {
+
+            nowa[j]=wart[i];
+
+            nowa[j].element=j;
+
+            j++;  
+
+         }
+
+     free(tab);
+
+        tab==NULL;
+
+     *tab=nowa;
+
+     *n=*n-1;
+
+}
+
+
+int main()
+
+{
+
+   
+
+     adres* tablica=NULL;
+
+     int n = 0;
+
+     int x;
+
+     do
+
+     {     
+
+     printf("Nacisnij: \n 1 aby dodac nowy kontakt\n 2 aby wyszukac osobe o podanym numerze\n 3 aby wypisac cala liste kontaktow");
+
+     printf("\n 4 aby wypisac wybrany element tablicy \n 5 aby usunac wybrany element \n 6 aby zakonczyc program\n");
+
+     scanf("%i",&x); 
+
+         switch (x) 
+
+         {
+
+         case 1 :
+
+            dodaj(&tablica,n);
+
+            n++;
+
+            system("cls");
+
+            break;
+
+            
+
+         case 2 :
+
+
+            x = wyszukaj(tablica, n);
+
+            if(x==-1)
+
+                         printf("Wybranego numeru nie ma w rejestrze/n");
+
+            else
+
+            {
+
+             printf("   %s", tablica[x].imie);
+
+             printf("   %s", tablica[x].nazwisko); 
+
+             }
+
+             system("pause");
+
+             system("cls");  
+
+            break;
+
+            
+
+         case 3 :
+
+            wszystko(tablica,n);
+
+            break;
+
+            
+
+         case 4 :
+
+            printf("Ktory kontakt chcesz wypisac? ");
+
+            int search;
+
+            scanf("%i",&search);
+
+            if(search > n || search < 0)
+
+                 {
+
+                 printf("Wybrany element nie istnieje\n");
+
+                 system("pause");
+
+                 system("cls");
+
+                 break;
+
+                 }
+
+            wypisz(tablica[search-1]);
+
+            system("pause");
+
+            system("cls");
+
+            break;
+
+            
+
+         case 5 :
+
+            usun(&tablica, tablica, &n);
+
+            system("pause");
+
+            system("cls");  
+
+            break;
+
+            
+
+         case 6 :
+
+            break;
+
+         }
+
+
+     }while(x!=6);
+
+     
+
+return 0;
+
+}   

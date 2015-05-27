@@ -1,0 +1,362 @@
+#include<stdio.h>
+
+#include<stdlib.h>
+
+
+#define IMIE 10
+
+#define NAZWISKO 15
+
+
+typedef struct osoba{
+
+     char imie[IMIE];
+
+     char nazwisko[NAZWISKO];
+
+     int rok;
+
+     struct osoba * next;
+
+     }dane;
+
+
+dane * dodaj(dane * head)
+
+{
+
+     dane * nowy;
+
+     nowy=malloc(sizeof(dane)*1);
+
+     if(nowy==NULL)
+
+             return 0;
+
+     printf("Podaj imie: ");
+
+     fgets(nowy->imie,IMIE,stdin);
+
+     printf("Podaj nazwisko: ");
+
+     fgets(nowy->nazwisko,NAZWISKO,stdin);
+
+     printf("Rok urodzenia: ");
+
+     scanf("%i",&(nowy->rok));
+
+     getchar();
+
+     nowy->next=head;
+
+     head=nowy;
+
+     return head;
+
+}
+
+     
+
+void wyswietl (dane * head)
+
+{
+
+     dane * wsk;
+
+     for(wsk=head;wsk!=NULL;wsk=wsk->next)
+
+     {
+
+             printf("%s",wsk->imie);
+
+             printf("%s",wsk->nazwisko);
+
+             printf("%i\n\n",wsk->rok);
+
+     }
+
+}
+
+
+int dod_kon(dane * head)
+
+{
+
+     dane * nowy;
+
+     nowy=malloc(sizeof(dane)*1);
+
+     if(nowy==NULL)
+
+             return 1;
+
+     printf("Podaj imie: ");
+
+     fgets(nowy->imie,IMIE,stdin);
+
+     printf("Podaj nazwisko: ");
+
+     fgets(nowy->nazwisko,NAZWISKO,stdin);
+
+     printf("Rok urodzenia: ");
+
+     scanf("%i",&(nowy->rok));
+
+     nowy->next=NULL;
+
+     dane * wsk;
+
+     for(wsk=head; wsk->next!=NULL ;wsk=wsk->next)
+
+        wsk=head;
+
+     wsk->next=nowy;
+
+     return 0;
+
+     
+
+}
+
+
+void search(dane * head, int check)
+
+{
+
+     dane * wsk;
+
+     int bylo=0;
+
+     for(wsk=head;wsk!=NULL;wsk=wsk->next)
+
+     {
+
+        if(wsk->rok==check)
+
+        {
+
+             printf("%s",wsk->imie);
+
+             printf("%s",wsk->nazwisko);
+
+             bylo=1;
+
+        }
+
+     }
+
+     if(bylo==0)
+
+       printf("W bazie nie ma osoby z tego roku\n"); 
+
+}
+
+
+dane * usun_poczatek(dane * head)
+
+{
+
+     dane * temp;
+
+     temp=head;
+
+     head=head->next;
+
+     free(temp);
+
+     temp=NULL;
+
+     return head;
+
+}
+
+
+void usun_kon(dane * head)
+
+{
+
+     dane * wsk, * temp;
+
+     for(wsk=head;wsk->next!=NULL;wsk=wsk->next)
+
+     {
+
+             temp=wsk;     
+
+      }
+
+      temp->next=NULL;
+
+      free(wsk);
+
+      wsk==NULL;
+
+}
+
+
+dane * usun(dane * head)
+
+{
+
+     while(head->next!=NULL)
+
+            usun_kon(head);
+
+     dane * temp;
+
+     head=head->next;
+
+     free(temp);
+
+     temp=NULL;
+
+       temp=NULL;
+
+     return head;  
+
+}
+
+
+
+     
+
+int main()
+
+{
+
+
+dane *head;
+
+head=NULL;
+
+int x;
+
+do
+
+{     
+
+ printf("Nacisnij: \n 1 aby dodac nowy na poczatek\n 2 aby dodac nowy na koniec\n 3 aby wypisac wszystko\n 4 wyszukanie wg. roku urodzenia\n");
+
+ printf(" 5 usuniecie pierwszego elementu\n 6 usuniecie ostatniego elementu\n 7 usuniecie wszystkiego ");
+
+ scanf("%i",&x);
+
+ getchar();
+
+ int sprawdzenie; 
+
+ switch (x)
+
+ { 
+
+      case 1 :
+
+      {
+
+             head=dodaj(head);
+
+             if(head==0)
+
+            {       
+
+                    printf("Nie dzia³a");
+
+                    return 1;
+
+            }  
+
+             break;
+
+      }
+
+      case 2 :
+
+      {
+
+           sprawdzenie=dod_kon(head);
+
+           if(sprawdzenie==1)
+
+           {       
+
+                    printf("Nie dzia³a");
+
+                    return 1;
+
+            }  
+
+             break;
+
+      }
+
+      
+
+      case 3 :
+
+      {
+
+           wyswietl(head);
+
+           break;
+
+      }
+
+      
+
+      case 4:
+
+      {
+
+           printf("Podaj rok jaki chcesz wyszukac?");
+
+           scanf("%i",&sprawdzenie);
+
+           search(head, sprawdzenie);
+
+           break;
+
+      }
+
+      case 5 :
+
+      {
+
+           head=usun_poczatek(head);
+
+           break;
+
+      }
+
+      
+
+      case 6 :
+
+      {
+
+           usun_kon(head);
+
+           break;
+
+      }
+
+      
+
+      case 7 :
+
+      {
+
+           head=usun(head);
+
+           break;
+
+      }
+
+ }
+
+}while(x!=0);              
+
+system("pause");
+
+return 0;
+
+}
