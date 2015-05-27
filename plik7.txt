@@ -1,0 +1,93 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+struct wpis
+{
+    char imie[20];
+    char nazwisko[20];
+    long numer;
+};
+
+struct wpis podaj_dane()
+{
+    struct wpis rekord;
+    printf("Imie: "); scanf("%s", &rekord.imie);
+    printf("Nazwisko: "); scanf("%s", &rekord.nazwisko);
+    printf("Numer tel.: "); scanf("%ld", &rekord.numer);
+    printf("\n\n");
+    return rekord;
+}
+
+void wypisz_rekord(struct wpis rekord)
+{
+    printf("%s %s %ld \n\n", rekord.imie, rekord.nazwisko, rekord.numer);
+}
+
+void dodaj_rekord(struct wpis** baza_danych, struct wpis rekord, int liczba_elementow)
+{
+
+    struct wpis* wsk_tmp=malloc((liczba_elementow+1)*sizeof(struct wpis));
+    if(wsk_tmp!=NULL)
+    {
+    int i;
+    for(i=0;i<liczba_elementow;i++) wsk_tmp[i]=(*baza_danych)[i];
+    wsk_tmp[liczba_elementow]=rekord;
+    free(*baza_danych);
+    *baza_danych=wsk_tmp;
+    }
+
+}
+
+int wyszukaj_rekord(struct wpis** baza_danych, long numer, int liczba_elementow)
+{
+    int i;
+    for(i=0;i<liczba_elementow;i++)
+    {
+        if((*baza_danych)[i].numer==numer) return i;
+    }
+    return -1;
+}
+
+int main()
+{
+    int x=0,decyzja,indeks;
+    long numer;
+    struct wpis* baza_danych;
+    baza_danych=NULL;
+    menu:
+    printf("1. Dodaj rekord \n\n 2.Znajdz rekord o podanym przez siebie numerze \n\n 3. Wypisz rekord \n\n 4. Wyjdz\n\n");
+    scanf("%d", &decyzja);
+    switch(decyzja)
+    {
+        case 1:
+        {
+            struct wpis nowy_rekord = podaj_dane();
+            dodaj_rekord(&baza_danych,nowy_rekord,x);
+            x++;
+            break;
+        }
+        case 2:
+        {
+            printf("Podaj numer: "); scanf("%ld", &numer);
+            indeks=wyszukaj_rekord(&baza_danych,numer,x);
+            printf("szukany przez ciebie rekord ma indeks: %d \n\n", (indeks+1));
+            break;
+        }
+        case 3:
+        {
+            printf("Ktory rekord chcesz wypisac? "); scanf("%d", &indeks);
+            if(indeks>=0 && indeks<=x) wypisz_rekord(baza_danych[indeks]);
+            else printf("Nie ma rekordu o podanym przez ciebie indeksie \n\n");
+            break;
+        }
+        case 4:
+        {
+            free(baza_danych);
+            baza_danych=NULL;
+            return 0;
+
+        }
+    }
+    goto menu;
+
+}
