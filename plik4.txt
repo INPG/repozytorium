@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 void wypiszTablice( int tablica[], int ile )
 {
@@ -23,7 +24,7 @@ int main()
     wypiszTablice( dane, 5 );
     return 0;
 }
-Sumowanie liczb pêtl¹ for
+Sumowanie liczb pÃªtlÂ¹ for
 C/C++
 #include <iostream>
 
