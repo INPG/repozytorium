@@ -89,5 +89,5 @@ int main()
         }
     }
     goto menu;
-
+return 0;
 }
