@@ -4,7 +4,7 @@
 struct wpis
 {
     char imie[20];
-    char nazwisko[20];
+    char nazwisko[30];
     long numer;
 };
 
