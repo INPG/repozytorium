@@ -5,7 +5,7 @@
 
 #define IMIE 10
 
-#define NAZWISKO 15
+#define NAZWISKO 20
 
 
 typedef struct osoba{
@@ -259,7 +259,7 @@ do
 
             {       
 
-                    printf("Nie dzia≥a");
+                    printf("Nie dzia≈Ça");
 
                     return 1;
 
@@ -279,7 +279,7 @@ do
 
            {       
 
-                    printf("Nie dzia≥a");
+                    printf("Nie dzia≈Ça");
 
                     return 1;
 
