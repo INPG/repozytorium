@@ -23,7 +23,7 @@ int main()
     wypiszTablice( dane, 5 );
     return 0;
 }
-Sumowanie liczb pêtl¹ for
+Sumowanie liczb pÃªtlÂ¹ for
 C/C++
 #include <iostream>
 
@@ -46,7 +46,7 @@ int sumujLiczby( int tablica[], int ile )
 int main()
 {
     int dane[ 5 ];
-    dane[ 0 ] = 11;
+    dane[ 0 ] = 1;
     dane[ 1 ] = 5;
     dane[ 2 ] = 7;
     dane[ 3 ] = 8;
