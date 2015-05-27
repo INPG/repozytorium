@@ -1,4 +1,5 @@
 #include <iostream>
+usingnamespace std;
 
 class A
 {
