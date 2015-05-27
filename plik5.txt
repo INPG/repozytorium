@@ -26,7 +26,7 @@ struct element
         printf("\n");
 
     }
-return 0;
+return 1;
 
 }
 
@@ -135,10 +135,10 @@ head=&rekord1;
 //scanf("%hd", &nowy_rekord.rok_urodzenia);
 //dodaj_na_poczatku(&head,&nowy_rekord);
 
-//przyk≥adowe rekordy:
+//przyk≈Çadowe rekordy:
 
 struct element rekord2;
-rekord2.imie="Jan ";  //w kazdym z napisÛw doda≥em na koncu jednπ spacjÍ gdyz dziÍki temu algorytm z fgetsem rÛwnieø dzia≥a
+rekord2.imie="Jan ";  //w kazdym z napis√≥w doda≈Çem na koncu jedn≈° spacjƒô gdyz dziƒôki temu algorytm z fgetsem r√≥wnie≈º dzia≈Ça
 rekord2.nazwisko="Kowalski ";
 rekord2.rok_urodzenia=1980;
 
@@ -147,7 +147,7 @@ rekord3.imie="Waclaw ";
 rekord3.nazwisko="Iksinski ";
 rekord3.rok_urodzenia=1970;
 
-x=wypisz_liste(head); //wypisanie listy przed dodaniem rekordÛw
+x=wypisz_liste(head); //wypisanie listy przed dodaniem rekord√≥w
 printf("\n\n");
 
 dodaj_na_poczatku(&head,&rekord2);
