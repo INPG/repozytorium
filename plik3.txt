@@ -1,0 +1,17 @@
+#include <iostream>
+
+void wypisz( int & iLiczba )
+{
+    std::cout << "Wartosc liczby wynosi: " << iLiczba << std::endl;
+    iLiczba += 10;
+    std::cout << "Wartosc liczby wynosi: " << iLiczba << std::endl;
+}
+
+int main()
+{
+    int iNaszaLiczba = 7;
+    std::cout << "Nasza liczba = " << iNaszaLiczba << std::endl;
+    wypisz( iNaszaLiczba );
+    std::cout << "Nasza liczba = " << iNaszaLiczba << std::endl;
+    return 0;
+}

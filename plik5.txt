@@ -1,0 +1,190 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct element
+{
+    char* imie;
+    char* nazwisko;
+    short rok_urodzenia;
+    struct element* next;
+};
+
+ int wypisz_liste(struct element* head)
+{
+    if(head==NULL) return -1 ;
+     int i;
+     struct element* wsk;
+    for(wsk=head; wsk!=NULL; wsk=wsk->next)
+    {
+        for(i=0; wsk->imie[i+1]!='\0'; i++) printf("%c", wsk->imie[i]);
+        printf(" ");
+        for(i=0; wsk->nazwisko[i+1]!='\0'; i++) printf("%c", wsk->nazwisko[i]);
+        printf(" ");
+        printf("%hd", wsk->rok_urodzenia);
+        printf("\n");
+
+    }
+return 0;
+
+}
+
+void dodaj_na_poczatku(struct element** head, struct element* rekord)
+{
+    if(head==NULL || rekord==NULL) return;
+    struct element* nowy_head=malloc(sizeof(struct element));
+    *nowy_head=*rekord;
+    nowy_head->next = *head;
+    *head=nowy_head;
+}
+
+void dodaj_na_koncu(struct element** head, struct element* rekord)
+{
+    if(head==NULL || rekord==NULL) return;
+     struct element* ostatni_element=malloc(sizeof(struct element));
+    struct element* wsk;
+    *ostatni_element=*rekord;
+    ostatni_element->next=NULL;
+    if(*head==NULL)
+    {
+        *head=ostatni_element;
+        return;
+    }
+    wsk=*head;
+    while(wsk->next != NULL) wsk=wsk->next;
+    wsk->next=ostatni_element;
+
+}
+
+int znajdz_po_roku(struct element* head, short rok_urodzenia)
+{
+    int licznik=1;
+    struct element* wsk=head;
+    for(wsk=head; wsk!=NULL; wsk=wsk->next)
+    {
+        if(wsk->rok_urodzenia==rok_urodzenia) return licznik;
+        licznik++;
+
+    }
+    return -1;
+}
+
+void usun_z_poczatku(struct element** head)
+{
+    if(head==NULL) return;
+    if(*head==NULL) return;
+    struct element* wsk_pomoc;
+    wsk_pomoc=*head;
+    *head=wsk_pomoc->next;
+    free(wsk_pomoc);
+}
+
+void usun_z_konca(struct element** head)
+{
+    if(head==NULL) return;
+    if(*head==NULL) return;
+    if(*head==NULL) return;
+    struct element* wsk,*wsk_pomoc;
+    wsk=*head;
+    while((wsk->next)->next!= NULL) wsk=wsk->next;
+    wsk_pomoc=wsk->next;
+    wsk->next=NULL;
+    free(wsk_pomoc);
+
+
+}
+
+void usun_liste(struct element** head)
+{
+    if(head==NULL) return;
+    if(*head==NULL) return;
+    struct element* wsk,*wsk_pomoc;
+    wsk=*head;
+    while(wsk!=NULL)
+    {
+        wsk_pomoc=wsk;
+        wsk=wsk->next;
+        free(wsk_pomoc);
+    }
+    free(wsk);
+    *head=NULL;
+
+}
+
+int main()
+{
+int x; //zmienna pomocnicza
+    short rok,nr_elem;
+struct element* head;
+struct element rekord1;
+
+rekord1.imie="Michal ";
+rekord1.nazwisko="Czech ";
+rekord1.rok_urodzenia=1995;
+rekord1.next=NULL;
+head=&rekord1;
+
+
+
+//struct element nowy_rekord;
+// nowy_rekord.imie=malloc(15*sizeof(char));
+//nowy_rekord.nazwisko=malloc(15*sizeof(char));
+//fgets(nowy_rekord.imie,15,stdin);
+//fgets(nowy_rekord.nazwisko,15,stdin);         - wersja z wczytywaniem z konsoli
+//scanf("%hd", &nowy_rekord.rok_urodzenia);
+//dodaj_na_poczatku(&head,&nowy_rekord);
+
+//przyk³adowe rekordy:
+
+struct element rekord2;
+rekord2.imie="Jan ";  //w kazdym z napisów doda³em na koncu jedn¹ spacjê gdyz dziêki temu algorytm z fgetsem równie¿ dzia³a
+rekord2.nazwisko="Kowalski ";
+rekord2.rok_urodzenia=1980;
+
+struct element rekord3;
+rekord3.imie="Waclaw ";
+rekord3.nazwisko="Iksinski ";
+rekord3.rok_urodzenia=1970;
+
+x=wypisz_liste(head); //wypisanie listy przed dodaniem rekordów
+printf("\n\n");
+
+dodaj_na_poczatku(&head,&rekord2);
+
+x=wypisz_liste(head); //wypisanie listy po dodaniu elementu na poczatku
+printf("\n\n");
+
+usun_z_poczatku(&head);
+
+x=wypisz_liste(head); //wypisanie listy po usunieciu elementu na poczatku
+printf("\n\n");
+
+dodaj_na_koncu(&head,&rekord3);
+
+x=wypisz_liste(head); //wypisanie listy po dodaniu elementu na koncu
+printf("\n\n");
+
+usun_z_konca(&head);
+
+x=wypisz_liste(head); //wypisanie listy po usunieciu elementu na koncu
+printf("\n\n");
+
+dodaj_na_poczatku(&head,&rekord2);
+dodaj_na_poczatku(&head,&rekord3);
+x=wypisz_liste(head); //wypisanie listy ze wszystkimi elementami
+printf("\n\n");
+
+nr_elem = znajdz_po_roku(head,1980);    //wyszukanie rekordu po roku urodzenia
+printf("szukany element listy to %d \n\n", nr_elem);
+
+usun_liste(&head);
+
+x=wypisz_liste(head); //wypisanie po usunieciu wszystkich
+if(x==-1) printf("lista jest pusta");
+
+
+
+
+
+}
