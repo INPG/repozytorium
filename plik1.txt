@@ -7,7 +7,7 @@ using namespace std;
 class OsobaCL
 {
 protected:
-    string m_imie;
+    string m_imie1;
     string m_nazwisko;
     OsobaCL * m_nastepnaOsoba;
 public:
