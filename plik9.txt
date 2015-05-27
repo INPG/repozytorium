@@ -59,4 +59,5 @@ printf("sprzezenie liczby 2 = "); wypisz_zesp(sprzezenie2);
 printf("\n");
 printf("modul liczby 1 = %f \n", modul1);
 printf("modul liczby 2 = %f \n", modul2);
+return 0;
 }
